@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!------------------>
+<!-- FORM SECTION -->
+<!------------------>
+<article class="media content-section">
+    <div class="media-body">
+
+        <div class="article-title article-metadata">
+            <h1> URL Form </h1>
+            <small class="text-muted"> Lets shorten that URL! Just a few questions... </small>
+        </div>
+
+        <form method='POST' action="{{ url_for('home') }}"> 
+            {{ form.hidden_tag() }} <!-- CSRF Token -->
+
+            <!-- FIELDS BEGIN -->
+            <fieldset class='form-group mt-4'>
+
+                    <!-- SITE FIELD -->
+                    <div class='form-group'>
+                        {{ form.site.label(class="form-control-label font-weight-bold") }}
+                        
+                        {% if form.site.errors %}
+                            {{ form.site(class="form-control form-control-lg is-invalid") }}
+                            <div class='invalid-feedback'>
+                                {% for error in form.site.errors %}
+                                    <span> {{ error }} </span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.site(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+
+                    <!-- KEYWORD FIELD -->
+                    <div class='form-group'>
+                        {{ form.keyword.label(class="form-control-label font-weight-bold") }}
+                        <small class='text-muted ml-3'> FYI, This is not required. It will be a part of the output URL.</small>
+                        
+                        {% if form.keyword.errors %}
+                            {{ form.keyword(class="form-control form-control-lg is-invalid") }}
+                            <div class='invalid-feedback'>
+                                {% for error in form.keyword.errors %}
+                                    <span> {{ error }} </span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.keyword(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+
+                    <!-- SUBMIT FIELD -->
+                    <div class='form-group'>
+                        {{ form.submit(class="btn btn-outline-info") }}
+                    </div>
+
+
+            </fieldset>
+        </form>
+        
+    </div>
+</article>
+
+<!---------------------->
+<!-- RECENT SHORTCUTS -->
+<!---------------------->
+<article class="media content-section">
+    <div class="media-body">
+
+        <div class="article-title article-metadata">
+            <h1> Recent Shortcuts </h1>
+        </div>
+
+        <div class='container mr-5 ml-5'>
+            <!-- HEADER ROW -->
+            <div class='row'>
+                <div class='col-sm'>
+                    <span class='font-weight-bold'>Shortcut Name</span>
+                </div>
+
+                <div class='col-sm'>
+                    <span class='font-weight-bold'>Target URL</span>
+                </div>
+
+                <div class='col-sm'>
+                    <span class='font-weight-bold'>Date Registered</span>
+                </div>
+            </div>
+
+            <!-- ITEMS -->
+            {% for short in shorts %}
+                <div class='row'>
+                    <div class='col-sm'>
+                        <small>{{ site }}short/<b>{{ short.short }}</b></small>
+                    </div>
+
+                    <div class='col-sm'>
+                        <small><a href='{{ short.targ_url }}'>{{ short.targ_url }}</a></small>
+                    </div>
+                    
+                    <div class='col-sm'>
+                        <small>{{ short.date.year }}-{{ short.date.month }}-{{ short.date.day }}</small>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+</article>
+
+{% endblock content %}

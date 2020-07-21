@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<script>   
+     window.setTimeout(function(){
+
+       window.location.href = "{{targetURL}}";
+
+       }, 5000);
+</script>
+
+<article class="media content-section">
+    <div class="media-body">
+
+        <div class="article-title article-metadata">
+            <h1> Redirecting! </h1>
+        </div>
+
+        <div class="article-content">
+            <small>Target URL is the following: <b>{{targetURL}}</b></small>
+            <small>You will be redirected soon.... If you are not, click <a href='{{targetURL}}'>here!</a></small>
+        </div>
+
+    </div>
+</article>
+    
+{% endblock content %}

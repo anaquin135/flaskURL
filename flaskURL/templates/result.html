@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<article class="media content-section">
+    <div class="media-body">
+
+        <div class="article-title article-metadata">
+            <h1> Success! </h1>
+        </div>
+
+        <div class="article-content">
+            <small> <span style='color: green'>Success!</span> Your shortened <b><a href='{{url}}'>URL</a></b> is as follows:</small>
+            <span class='form-control form-control-lg'>{{url}}</span>
+        </div>
+
+    </div>
+</article>
+    
+{% endblock content %}
