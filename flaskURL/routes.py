@@ -5,6 +5,8 @@ from flaskURL.models import URL
 from flaskURL.misc import randomizeKeyword
 import string
 
+# TEST
+
 SITE_ADDRESS='http://127.0.0.1:5000/' # Change to represent site address.
 
 # Main Route #
